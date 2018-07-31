@@ -1,8 +1,10 @@
-# ZS-NPC
+# NPC
 - 원제작자: 원본님
 - 수정: 고장난제로
 - 제작팀: ZEROSM Network
 - 라이센스: GPL3.0
+
+- 플러그인 원본 링크: https://github.com/onebone/NPC/
 
 ----------------------------
 
