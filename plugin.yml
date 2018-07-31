@@ -31,5 +31,5 @@ permissions:
 commands:
  npc:
   description: NPC 관련 명령어 입니다.
-  usage: /npc <|제거|목록|메시지|명령어>
+  usage: /npc <생성|제거|목록|메시지|명령어>
   permission: npc.command.npc;npc.command.npc.create;npc.command.npc.remove;npc.command.npc.list;npc.command.npc.message;npc.command.npc.command;
