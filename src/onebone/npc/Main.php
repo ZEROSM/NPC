@@ -123,11 +123,11 @@ class Main extends PluginBase implements Listener{
 		}
 	}
 
-	public function onCommand(CommandSender $sender, Command $command, $label, array $params) : bool {
+	public function onCommand(CommandSender $sender, Command $command, string $label, array $params) : bool {
 		switch($command->getName()){
 			case "npc":
 			switch(strtolower(array_shift($params))){
-				case "create":
+				case "생성":
 				case "c":
 					if(!$sender instanceof Player){
 						$sender->sendMessage(TextFormat::RED . "Please run this command in-game.");
@@ -141,7 +141,7 @@ class Main extends PluginBase implements Listener{
 
 					$name = implode(" ", $params);
 					if(trim($name) === ""){
-						$sender->sendMessage(TextFormat::RED."Usage: /npc create <name>");
+						$sender->sendMessage(TextFormat::RED."사용법: /npc 생성 <name>");
 						return true;
 					}
 
@@ -155,7 +155,7 @@ class Main extends PluginBase implements Listener{
 						$this->save();
 					}
 					return true;
-					case "remove":
+					case "제거":
 					case "r":
 					if(!$sender->hasPermission("npc.command.npc.remove")){
 						$sender->sendMessage(new TranslationContainer(TextFormat::RED . "%commands.generic.permission"));
@@ -164,7 +164,7 @@ class Main extends PluginBase implements Listener{
 
 					$id = array_shift($params);
 					if(!is_numeric($id)){
-						$sender->sendMessage(TextFormat::RED."Usage: /npc remove <id>");
+						$sender->sendMessage(TextFormat::RED."Usage: /npc 제거 <id>");
 						return true;
 					}
 
@@ -179,9 +179,9 @@ class Main extends PluginBase implements Listener{
 							return true;
 						}
 					}
-					$sender->sendMessage("Could not find NPC ".TextFormat::RED.$id);
+					$sender->sendMessage("해당 ".TextFormat::RED.$id."§r§f NPC 번호는 NPC 목록에 없습니다.");
 				return true;
-				case "list":
+				case "목록":
 				case "ls":
 				case "l":
 					if(!$sender->hasPermission("npc.command.npc.list")){
@@ -212,7 +212,7 @@ class Main extends PluginBase implements Listener{
 					$output = substr($output, 0, -1);
 					$sender->sendMessage($output);
 					return true;
-				case "message":
+				case "메시지":
 				case "msg":
 				case "m":
 					if(!$sender->hasPermission("npc.command.npc.message")){
@@ -224,12 +224,12 @@ class Main extends PluginBase implements Listener{
 
 					$this->msgQueue[$sender->getName()] = $message;
 
-					$sender->sendMessage("Touch NPC you want to set message.");
+					$sender->sendMessage("해당 메시지를 적용할 NPC를 터치해주세요!");
 					if($this->getConfig()->get("save-on-change")){
 						$this->save();
 					}
 					return true;
-				case "command":
+				case "명령어":
 				case "cmd":
 					if(!$sender->hasPermission("npc.command.npc.command")){
 						$sender->sendMessage(new TranslationContainer(TextFormat::RED . "%commands.generic.permission"));
@@ -237,7 +237,7 @@ class Main extends PluginBase implements Listener{
 					}
 
 					$this->cmdQueue[$sender->getName()] = trim(implode(" ", $params));
-					$sender->sendMessage("Touch NPC you want to set command.");
+					$sender->sendMessage("해당 명령어를 적용할 NPC를 터치해주세요!");
 					return true;
 			}
 		}
