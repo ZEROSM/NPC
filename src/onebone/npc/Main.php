@@ -76,14 +76,15 @@ class Main extends PluginBase implements Listener{
 				if(isset($this->msgQueue[$event->getPlayer()->getName()])){
 					$npc->setMessage($this->msgQueue[$event->getPlayer()->getName()]);
 					unset($this->msgQueue[$event->getPlayer()->getName()]);
-					$event->getPlayer()->sendMessage("You have set NPC ".TextFormat::AQUA.$npc->getName().TextFormat::WHITE." to say ".TextFormat::GREEN.$npc->getMessage());
+					$event->getPlayer()->sendMessage("NPC ".TextFormat::AQUA.$npc->getName().TextFormat::WHITE."가 플레이어한테 보여줄 메시지가 설정되었습니다.");
+					$event->getPlayer()->sendMessage("내용: ".TextFormat::GREEN.$npc->getMessage());
 				}
 
 				if(isset($this->cmdQueue[$event->getPlayer()->getName()])){
 					$npc->setCommand($this->cmdQueue[$event->getPlayer()->getName()]);
 					unset($this->cmdQueue[$event->getPlayer()->getName()]);
-
-					$event->getPlayer()->sendMessage("You have set NPC " . TextFormat::AQUA . $npc->getName() . TextFormat::WHITE . " to execute command " . TextFormat::GREEN . "/" . $npc->getCommand());
+					$event->getPlayer()->sendMessage("NPC ".TextFormat::AQUA.$npc->getName().TextFormat::WHITE."가 실행할 명령어가 설정되었습니다.");
+					$event->getPlayer()->sendMessage("명령어: " . TextFormat::GREEN . "/" . $npc->getCommand());
 				}
 			}
 		}
